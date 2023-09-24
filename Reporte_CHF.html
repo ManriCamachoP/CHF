@@ -74,38 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body>
+<body class="fullcontent">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Tabla de contenidos</h2>
-   
-  <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a>
-  <ul>
-  <li><a href="#lenguaje-de-programación" id="toc-lenguaje-de-programación" class="nav-link" data-scroll-target="#lenguaje-de-programación"><span class="header-section-number">1.1</span> Lenguaje de programación</a></li>
-  </ul></li>
-  <li><a href="#análsis" id="toc-análsis" class="nav-link" data-scroll-target="#análsis"><span class="header-section-number">2</span> <strong>Análsis</strong></a>
-  <ul>
-  <li><a href="#base-de-datos" id="toc-base-de-datos" class="nav-link" data-scroll-target="#base-de-datos"><span class="header-section-number">2.1</span> <strong>Base de datos</strong></a></li>
-  <li><a href="#análisis-descriptivo" id="toc-análisis-descriptivo" class="nav-link" data-scroll-target="#análisis-descriptivo"><span class="header-section-number">2.2</span> <strong>Análisis Descriptivo</strong></a>
-  <ul class="collapse">
-  <li><a href="#parte-1-manipulación" id="toc-parte-1-manipulación" class="nav-link" data-scroll-target="#parte-1-manipulación"><span class="header-section-number">2.2.1</span> <strong>Parte 1: Manipulación</strong></a></li>
-  <li><a href="#análisis-gráfico-global-de-la-velocidad" id="toc-análisis-gráfico-global-de-la-velocidad" class="nav-link" data-scroll-target="#análisis-gráfico-global-de-la-velocidad"><span class="header-section-number">2.2.2</span> <strong>Análisis Gráfico Global de la Velocidad</strong></a></li>
-  </ul></li>
-  <li><a href="#análisis-del-indicador-chf" id="toc-análisis-del-indicador-chf" class="nav-link" data-scroll-target="#análisis-del-indicador-chf"><span class="header-section-number">2.3</span> <strong>Análisis del Indicador CHF</strong></a>
-  <ul class="collapse">
-  <li><a href="#creación-del-indicador-chf" id="toc-creación-del-indicador-chf" class="nav-link" data-scroll-target="#creación-del-indicador-chf"><span class="header-section-number">2.3.1</span> <strong>Creación del Indicador CHF</strong></a>
-  <ul class="collapse">
-  <li><a href="#creación-de-cuadrículas" id="toc-creación-de-cuadrículas" class="nav-link" data-scroll-target="#creación-de-cuadrículas"><span class="header-section-number">2.3.1.1</span> <strong>Creación de cuadrículas</strong></a></li>
-  <li><a href="#creación-del-indice-chf" id="toc-creación-del-indice-chf" class="nav-link" data-scroll-target="#creación-del-indice-chf"><span class="header-section-number">2.3.1.2</span> <strong>Creación del Indice CHF</strong></a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-</div>
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -134,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">23 de septiembre de 2023</p>
+      <p class="date">24 de septiembre de 2023</p>
     </div>
   </div>
   
@@ -144,8 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="introducción" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
 <p>En este trabajo, se aborda la creación de un índice esencial para comprender la climatología de huracanes en las regiones de Costa Rica y Nicaragua: el CHF (Costal Hurricane Frequency), implementado en el articulo de Karthik Balaguru, “Increased U.S. coastal hurricane risk under climate change”. En este estudio se emplea una base de datos de HURDAT (Hurricane Database) para obtener una estimación del CHF para las regiones previamente mencionadas. Es importante destacar que, si bien se utiliza la técnica CHF como punto de partida, se han realizado ajustes para adaptarla a las características que tiene la base de datos del HURDAT.</p>
 <p>El CHF se define como la cantidad de ubicaciones de trayectorias de huracanes que cruzan sobre tierra durante un periodo de seis horas por grado cuadrado por año. Para su cálculo, se consideran todas las ubicaciones de tormentas cuya intensidad supera un umbral específico. El cual tiene la siguiente ecuación:</p>
 <p><span class="math display">\[
@@ -162,8 +134,8 @@ v: \textrm{la velocidad de traslación}
 <p><span class="math display">\[
 TimeStep: \textrm{es el paso de tiempo}
 \]</span></p>
-<section id="lenguaje-de-programación" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="lenguaje-de-programación"><span class="header-section-number">1.1</span> Lenguaje de programación</h2>
+<section id="lenguaje-de-programación" class="level2">
+<h2 class="anchored" data-anchor-id="lenguaje-de-programación">Lenguaje de programación</h2>
 <p>Para la creación de dicho índice se utilizará el lenguaje de programación de Python, con uso de las librerías de manipulación de datos que tiene esta; mientras que el análisis gráfico se hará uso del lenguaje R, puesto que la librería de <code>ggplot</code> es estéticamente mejor. Para pode utilizar ambos lenguajes de programación simultaneamente se utilizó la librería llamada <code>reticulate</code>.</p>
 <p>Las siguientes librerías serán las que se van a utilizar para el lenguaje de Python:</p>
 <ul>
@@ -197,10 +169,10 @@ TimeStep: \textrm{es el paso de tiempo}
 </div>
 </section>
 </section>
-<section id="análsis" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> <strong>Análsis</strong></h1>
-<section id="base-de-datos" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="base-de-datos"><span class="header-section-number">2.1</span> <strong>Base de datos</strong></h2>
+<section id="análsis" class="level1">
+<h1><strong>Análsis</strong></h1>
+<section id="base-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="base-de-datos"><strong>Base de datos</strong></h2>
 <p>Tal como se mencionó en la introducción, se procederá a importar la base de datos del HURDAT (Hurricane Database), en conjunto con los archivos de shape (shapefiles) que representan los límites geográficos de los países de Costa Rica y Nicaragua.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importamos las bases de datos</span></span>
@@ -209,16 +181,16 @@ TimeStep: \textrm{es el paso de tiempo}
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nic <span class="op">=</span> read_dataframe(<span class="st">"/Users/manriquecamacho/Library/CloudStorage/OneDrive-UniversidaddeCostaRica/Universidad de Costa Rica/HORAS/CIGEFI/Datos Manrique/Shape_CR_NIC/NIC/NIC.shp"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="análisis-descriptivo" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="análisis-descriptivo"><span class="header-section-number">2.2</span> <strong>Análisis Descriptivo</strong></h2>
+<section id="análisis-descriptivo" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-descriptivo"><strong>Análisis Descriptivo</strong></h2>
 <p>En esta sección, se llevará a cabo un análisis descriptivo utilizando la base de datos HURDAT (Hurricane Database), que contiene información detallada sobre la velocidad, nombre, latitud, longitud, fecha (en año-mes-dia) y radio de cada huracán registrado. Este análisis inicial se centrará en la exploración y comprensión de las características fundamentales de los huracanes registrados en la región, sin considerar aún la creación de los índices CHF. Dentro de esta sub-sección se llevaran a cabo los siguientes puntos:</p>
 <ol type="1">
 <li><p>Se analizará y se hará una manipulación en la base de datos del HURDAT para poder tener una mayor utilidad en los futuros análisis.</p></li>
 <li><p>Se examinará la distribución de la velocidad de los huracanes y su variabilidad a lo largo de los años y meses.</p></li>
 <li><p>Se delimitará la atención a los huracanes que afectaron directamente o estuvieron cerca de las costas de Costa Rica y Nicaragua. Esto permitirá realizar un análisis más detallado de las características de los huracanes que tienen un impacto potencial en esta región, lo que incluye su intensidad, tamaño y trayectoria.</p></li>
 </ol>
-<section id="parte-1-manipulación" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="parte-1-manipulación"><span class="header-section-number">2.2.1</span> <strong>Parte 1: Manipulación</strong></h3>
+<section id="parte-1-manipulación" class="level3">
+<h3 class="anchored" data-anchor-id="parte-1-manipulación"><strong>Parte 1: Manipulación</strong></h3>
 <p>Primeramente se observa como está organizada la base de datos del HURDAT</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hurdat.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -260,8 +232,8 @@ TimeStep: \textrm{es el paso de tiempo}
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                            (gdf_hurdat[<span class="st">"Lat"</span>]<span class="op">&gt;=</span> miny))] <span class="co">#Delimitación de la zona</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="análisis-gráfico-global-de-la-velocidad" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="análisis-gráfico-global-de-la-velocidad"><span class="header-section-number">2.2.2</span> <strong>Análisis Gráfico Global de la Velocidad</strong></h3>
+<section id="análisis-gráfico-global-de-la-velocidad" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-gráfico-global-de-la-velocidad"><strong>Análisis Gráfico Global de la Velocidad</strong></h3>
 <p>Primero, se utilizará la base de datos completa de HURDAT, que abarca todos los huracanes en todo el mundo durante los años de 1851 a 2021. Esto permitirá observar y analizar la variabilidad de las velocidades a lo largo de los años y comprender los diversos comportamientos de estos fenómenos. Posteriormente, se llevará a cabo un análisis similar, pero enfocado exclusivamente en los huracanes que se acercaron a las costas de Costa Rica y Nicaragua.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -290,15 +262,15 @@ TimeStep: \textrm{es el paso de tiempo}
 <p>La distribución de velocidades de los huracanes que han afectado las proximidades de Costa Rica y Nicaragua muestra una notable similitud con las velocidades observadas en el “Gráfico 1: Frecuencias de Velocidades de los Huracanes”. Esto indica que las velocidades de los huracanes no exhiben un comportamiento irregular cuando atraviesan estas regiones mencionadas. Es importante destacar que la cantidad total de huracanes que afectan estas zonas es bastante reducida, como se puede apreciar en los datos. Además, el promedio es un poco mayor que el del gráfico anterior.</p>
 </section>
 </section>
-<section id="análisis-del-indicador-chf" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="análisis-del-indicador-chf"><span class="header-section-number">2.3</span> <strong>Análisis del Indicador CHF</strong></h2>
+<section id="análisis-del-indicador-chf" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-del-indicador-chf"><strong>Análisis del Indicador CHF</strong></h2>
 <p>En esta subsección se realizaran los siguientes puntos:</p>
 <ol type="1">
 <li>Creación del indicador CHF</li>
 <li>Graficación del indicador CHF</li>
 </ol>
-<section id="creación-del-indicador-chf" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="creación-del-indicador-chf"><span class="header-section-number">2.3.1</span> <strong>Creación del Indicador CHF</strong></h3>
+<section id="creación-del-indicador-chf" class="level3">
+<h3 class="anchored" data-anchor-id="creación-del-indicador-chf"><strong>Creación del Indicador CHF</strong></h3>
 <p>Para la creación del indicador CHF, el cual aparece en el artículo científico <em>Increased U.S. coastal hurricane risk under climate change</em> de Karthik Balaguru se debe tomar en cuenta varios aspectos. La formula mencionada en la introducción la cual es la siguiente:</p>
 <p><span class="math display">\[
 CHF = n\frac{l}{TimeStep*v}
@@ -320,8 +292,8 @@ TimeStep: \textrm{es el paso de tiempo}
 <li><p>En el artículo de Balaguru no se especifica como se utiliza el tiempo de traslación, es decir <strong>v</strong>, por lo cual para la implementación de este indice se decidió tomar el promedio de la máxima velocidad (MaxW) por grado cuadrado.</p></li>
 <li><p>Por ultimo, cabe mencionar que el radio (Rad) no se utiliza en el estimador CHF pero es una variable que se podría contemplar incluirla de cierta manera en el cálculo.</p></li>
 </ul>
-<section id="creación-de-cuadrículas" class="level4" data-number="2.3.1.1">
-<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="creación-de-cuadrículas"><span class="header-section-number">2.3.1.1</span> <strong>Creación de cuadrículas</strong></h4>
+<section id="creación-de-cuadrículas" class="level4">
+<h4 class="anchored" data-anchor-id="creación-de-cuadrículas"><strong>Creación de cuadrículas</strong></h4>
 <p>\ Se prosigue a crear las cuadrículas que se van a utilizar para el índice del CHF, cabe resaltar que se menciona en el libro de Balaguru que las cuadrículas son grado cuadrado.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grado_cuad <span class="op">=</span> <span class="dv">1</span> <span class="co">#Grado cuadrado = metro cuadrado</span></span>
@@ -345,8 +317,8 @@ TimeStep: \textrm{es el paso de tiempo}
 </div>
 </div>
 </section>
-<section id="creación-del-indice-chf" class="level4" data-number="2.3.1.2">
-<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="creación-del-indice-chf"><span class="header-section-number">2.3.1.2</span> <strong>Creación del Indice CHF</strong></h4>
+<section id="creación-del-indice-chf" class="level4">
+<h4 class="anchored" data-anchor-id="creación-del-indice-chf"><strong>Creación del Indice CHF</strong></h4>
 <p>Ya teniendo las cuadrículas definidas, se prosigue a crear el indice CHF. La formula empleada para el cálculo del CHF quedo de la siguiente manera: <span class="math display">\[
 CHF = \frac{n_i}{6\overline{v}_{i}}
 \]</span> En donde, <span class="math display">\[
@@ -401,7 +373,7 @@ v_i: \textrm{velocidad máxima de traslación promedio de la cuadrícula i}
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="Reporte_CHF_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid"></p>
+<p><img src="Reporte_CHF_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
