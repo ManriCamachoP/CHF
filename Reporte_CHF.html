@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Manrique Camacho Pochet">
+
+<title>Índice CHF: Análisis del CHF en los países de Costa Rica y Nicaragua</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Reporte_CHF_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Reporte_CHF_files/libs/quarto-html/quarto.js"></script>
+<script src="Reporte_CHF_files/libs/quarto-html/popper.min.js"></script>
+<script src="Reporte_CHF_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Reporte_CHF_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Reporte_CHF_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Reporte_CHF_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Reporte_CHF_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Reporte_CHF_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Reporte_CHF_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a>
+  <ul>
+  <li><a href="#lenguaje-de-programación" id="toc-lenguaje-de-programación" class="nav-link" data-scroll-target="#lenguaje-de-programación"><span class="header-section-number">1.1</span> Lenguaje de programación</a></li>
+  </ul></li>
+  <li><a href="#análsis" id="toc-análsis" class="nav-link" data-scroll-target="#análsis"><span class="header-section-number">2</span> <strong>Análsis</strong></a>
+  <ul>
+  <li><a href="#base-de-datos" id="toc-base-de-datos" class="nav-link" data-scroll-target="#base-de-datos"><span class="header-section-number">2.1</span> <strong>Base de datos</strong></a></li>
+  <li><a href="#análisis-descriptivo" id="toc-análisis-descriptivo" class="nav-link" data-scroll-target="#análisis-descriptivo"><span class="header-section-number">2.2</span> <strong>Análisis Descriptivo</strong></a>
+  <ul class="collapse">
+  <li><a href="#parte-1-manipulación" id="toc-parte-1-manipulación" class="nav-link" data-scroll-target="#parte-1-manipulación"><span class="header-section-number">2.2.1</span> <strong>Parte 1: Manipulación</strong></a></li>
+  <li><a href="#análisis-gráfico-global-de-la-velocidad" id="toc-análisis-gráfico-global-de-la-velocidad" class="nav-link" data-scroll-target="#análisis-gráfico-global-de-la-velocidad"><span class="header-section-number">2.2.2</span> <strong>Análisis Gráfico Global de la Velocidad</strong></a></li>
+  </ul></li>
+  <li><a href="#análisis-del-indicador-chf" id="toc-análisis-del-indicador-chf" class="nav-link" data-scroll-target="#análisis-del-indicador-chf"><span class="header-section-number">2.3</span> <strong>Análisis del Indicador CHF</strong></a>
+  <ul class="collapse">
+  <li><a href="#creación-del-indicador-chf" id="toc-creación-del-indicador-chf" class="nav-link" data-scroll-target="#creación-del-indicador-chf"><span class="header-section-number">2.3.1</span> <strong>Creación del Indicador CHF</strong></a>
+  <ul class="collapse">
+  <li><a href="#creación-de-cuadrículas" id="toc-creación-de-cuadrículas" class="nav-link" data-scroll-target="#creación-de-cuadrículas"><span class="header-section-number">2.3.1.1</span> <strong>Creación de cuadrículas</strong></a></li>
+  <li><a href="#creación-del-indice-chf" id="toc-creación-del-indice-chf" class="nav-link" data-scroll-target="#creación-del-indice-chf"><span class="header-section-number">2.3.1.2</span> <strong>Creación del Indice CHF</strong></a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Índice CHF: Análisis del CHF en los países de Costa Rica y Nicaragua</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor/a</div>
+  <div class="quarto-title-meta-heading">Afiliación</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Manrique Camacho Pochet </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Centro de Investigación de Geofísica, Universidad de Costa Rica
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">23 de septiembre de 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introducción" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
+<p>En este trabajo, se aborda la creación de un índice esencial para comprender la climatología de huracanes en las regiones de Costa Rica y Nicaragua: el CHF (Costal Hurricane Frequency), implementado en el articulo de Karthik Balaguru, “Increased U.S. coastal hurricane risk under climate change”. En este estudio se emplea una base de datos de HURDAT (Hurricane Database) para obtener una estimación del CHF para las regiones previamente mencionadas. Es importante destacar que, si bien se utiliza la técnica CHF como punto de partida, se han realizado ajustes para adaptarla a las características que tiene la base de datos del HURDAT.</p>
+<p>El CHF se define como la cantidad de ubicaciones de trayectorias de huracanes que cruzan sobre tierra durante un periodo de seis horas por grado cuadrado por año. Para su cálculo, se consideran todas las ubicaciones de tormentas cuya intensidad supera un umbral específico. El cual tiene la siguiente ecuación:</p>
+<p><span class="math display">\[
+CHF = n\frac{l}{TimeStep*v}
+\]</span></p>
+<p>En donde, <span class="math display">\[
+n: \textrm{es el número de trayectorias de huracanes que pasan a través de un grado cuadrado}
+\]</span> <span class="math display">\[
+l: \textrm{la longitud de la cuadrícula}
+\]</span></p>
+<p><span class="math display">\[
+v: \textrm{la velocidad de traslación}
+\]</span></p>
+<p><span class="math display">\[
+TimeStep: \textrm{es el paso de tiempo}
+\]</span></p>
+<section id="lenguaje-de-programación" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="lenguaje-de-programación"><span class="header-section-number">1.1</span> Lenguaje de programación</h2>
+<p>Para la creación de dicho índice se utilizará el lenguaje de programación de Python, con uso de las librerías de manipulación de datos que tiene esta; mientras que el análisis gráfico se hará uso del lenguaje R, puesto que la librería de <code>ggplot</code> es estéticamente mejor. Para pode utilizar ambos lenguajes de programación simultaneamente se utilizó la librería llamada <code>reticulate</code>.</p>
+<p>Las siguientes librerías serán las que se van a utilizar para el lenguaje de Python:</p>
+<ul>
+<li><p><strong>NumPy:</strong> Libreria para realizar cálculos numéricos en Python. Es ampliamente utilizada para operaciones matemáticas y de manipulación de datos.</p></li>
+<li><p><strong>Pandas:</strong> Pandas es una biblioteca que proporciona estructuras de datos y herramientas para el análisis de datos. Es especialmente útil para la manipulación y exploración de datos tabulares.</p></li>
+<li><p><strong>GeoPandas:</strong> GeoPandas es una extensión de Pandas que agrega capacidades geoespaciales. Permite trabajar con datos geoespaciales, como GeoDataFrames, y realizar análisis espaciales.</p></li>
+<li><p><strong>OS:</strong> El módulo <code>os</code> proporciona funciones para interactuar con el sistema operativo, como la manipulación de rutas de archivos y directorios.</p></li>
+<li><p><strong>Shapely:</strong> Shapely es una biblioteca que se utiliza para el procesamiento y análisis de geometría plana. Permite trabajar con objetos geométricos como puntos, líneas y polígonos.</p></li>
+<li><p><strong>pyogrio:</strong> pyogrio es una biblioteca que se utiliza para leer y escribir datos geoespaciales en formatos como GeoJSON y Shapefile. Facilita la manipulación de datos geoespaciales.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyogrio <span class="im">import</span> read_dataframe</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Polygon, Point</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Las siguientes librerias seran las que se van a utilizar para el lenguaje de R:</p>
+<ul>
+<li><p><strong>Tidyverse:</strong> Conunto de librerias que contiene a algunas como <code>ggplot</code> y <code>dplyr</code>, entre otras… Principalmente se utilizaran ggplot y dplyr.</p></li>
+<li><p><strong>ggthemes:</strong></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geojsonsf)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="análsis" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> <strong>Análsis</strong></h1>
+<section id="base-de-datos" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="base-de-datos"><span class="header-section-number">2.1</span> <strong>Base de datos</strong></h2>
+<p>Tal como se mencionó en la introducción, se procederá a importar la base de datos del HURDAT (Hurricane Database), en conjunto con los archivos de shape (shapefiles) que representan los límites geográficos de los países de Costa Rica y Nicaragua.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importamos las bases de datos</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>hurdat <span class="op">=</span> pd.read_csv(<span class="st">"/Users/manriquecamacho/Library/CloudStorage/OneDrive-UniversidaddeCostaRica/Universidad de Costa Rica/HORAS/CIGEFI/Datos Manrique/DATOS HURDAT copy/hurdat2daily.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cr <span class="op">=</span> read_dataframe(<span class="st">"/Users/manriquecamacho/Library/CloudStorage/OneDrive-UniversidaddeCostaRica/Universidad de Costa Rica/HORAS/CIGEFI/Datos Manrique/Shape_CR_NIC/CR/CR.shp"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nic <span class="op">=</span> read_dataframe(<span class="st">"/Users/manriquecamacho/Library/CloudStorage/OneDrive-UniversidaddeCostaRica/Universidad de Costa Rica/HORAS/CIGEFI/Datos Manrique/Shape_CR_NIC/NIC/NIC.shp"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="análisis-descriptivo" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="análisis-descriptivo"><span class="header-section-number">2.2</span> <strong>Análisis Descriptivo</strong></h2>
+<p>En esta sección, se llevará a cabo un análisis descriptivo utilizando la base de datos HURDAT (Hurricane Database), que contiene información detallada sobre la velocidad, nombre, latitud, longitud, fecha (en año-mes-dia) y radio de cada huracán registrado. Este análisis inicial se centrará en la exploración y comprensión de las características fundamentales de los huracanes registrados en la región, sin considerar aún la creación de los índices CHF. Dentro de esta sub-sección se llevaran a cabo los siguientes puntos:</p>
+<ol type="1">
+<li><p>Se analizará y se hará una manipulación en la base de datos del HURDAT para poder tener una mayor utilidad en los futuros análisis.</p></li>
+<li><p>Se examinará la distribución de la velocidad de los huracanes y su variabilidad a lo largo de los años y meses.</p></li>
+<li><p>Se delimitará la atención a los huracanes que afectaron directamente o estuvieron cerca de las costas de Costa Rica y Nicaragua. Esto permitirá realizar un análisis más detallado de las características de los huracanes que tienen un impacto potencial en esta región, lo que incluye su intensidad, tamaño y trayectoria.</p></li>
+</ol>
+<section id="parte-1-manipulación" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="parte-1-manipulación"><span class="header-section-number">2.2.1</span> <strong>Parte 1: Manipulación</strong></h3>
+<p>Primeramente se observa como está organizada la base de datos del HURDAT</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hurdat.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       ATCF     Name  rows         dat   Lat  ...   64NE   64SE   64SW   64NW    Rad
+0  AL011851  UNNAMED    14  1851-06-24  28.0  ... -999.0 -999.0 -999.0 -999.0 -999.0
+1  AL011851  UNNAMED    14  1851-06-25  28.1  ... -999.0 -999.0 -999.0 -999.0 -999.0
+2  AL011851  UNNAMED    14  1851-06-26  28.6  ... -999.0 -999.0 -999.0 -999.0 -999.0
+3  AL011851  UNNAMED    14  1851-06-27  30.2  ... -999.0 -999.0 -999.0 -999.0 -999.0
+4  AL021851  UNNAMED     1  1851-07-05  22.2  ... -999.0 -999.0 -999.0 -999.0 -999.0
+
+[5 rows x 21 columns]</code></pre>
+</div>
+</div>
+<p>Como se observa y se menciona anteriormente en la introducción de la sección “Análisis Descriptivo” la columna dat, que se refiere a la fecha de ese huracán, está agrupada. Por lo cual se decide dividir dicha columna en tres columnas, las cuales serian las siguientes: Año, Mes y Día. Esto con el fin de poder analizar el comportamiento a través de los años de los huracanes</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hurdat[[<span class="st">"anio"</span>,<span class="st">"mes"</span>,<span class="st">"dia"</span>]] <span class="op">=</span> hurdat[<span class="st">"dat"</span>].<span class="bu">str</span>.split(<span class="st">'-'</span>,expand<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>hurdat.drop(columns<span class="op">=</span> <span class="st">'dat'</span>, inplace<span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hurdat <span class="op">=</span> hurdat[hurdat[<span class="st">"MaxW"</span>]<span class="op">&gt;</span><span class="dv">50</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Seguidamente, se crea un DataFrame el cual contiene a los paises de Nicaragua y Costa Rica concatenados. Ademas de pasar la base de datos del HURDAT, a un dataframe geoespacial.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cr_nic <span class="op">=</span> pd.concat([cr,nic]) <span class="co">#Concatenamos ambas bases</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cr_nic[<span class="st">"Pais"</span>] <span class="op">=</span> [<span class="st">"CR"</span>,<span class="st">"NIC"</span>] <span class="co">#Designamos cual geometría le pertenece a que país</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>gdf_hurdat <span class="op">=</span> hurdat.copy()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>gdf_hurdat <span class="op">=</span>  gpd.GeoDataFrame(gdf_hurdat,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                geometry<span class="op">=</span>gpd.points_from_xy(gdf_hurdat.Lon, gdf_hurdat.Lat), </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                crs<span class="op">=</span><span class="st">"EPSG:4326"</span>) <span class="co">#Base del Hurdat con formato geoespacial</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ya teniendo a Costa Rica y Nicaragua agrupados, se procede a crear una nueva base de datos en la cual se filtró la base del HURDAT para que solo aparezcan los huracanes con las coordenadas cercanas a los paises de Nicaragua y Costa Rica.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>minx, miny, maxx, maxy <span class="op">=</span> cr_nic.total_bounds <span class="co">#Limites de los paises de Nicaragua y Costa Rica</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>hurdat_cr_nic <span class="op">=</span> gdf_hurdat[((gdf_hurdat[<span class="st">"Lon"</span>]<span class="op">&lt;=</span> maxx)<span class="op">&amp;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                            (gdf_hurdat[<span class="st">"Lon"</span>]<span class="op">&gt;=</span> minx))<span class="op">&amp;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                            ((gdf_hurdat[<span class="st">"Lat"</span>]<span class="op">&lt;=</span> maxy)<span class="op">&amp;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                            (gdf_hurdat[<span class="st">"Lat"</span>]<span class="op">&gt;=</span> miny))] <span class="co">#Delimitación de la zona</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="análisis-gráfico-global-de-la-velocidad" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="análisis-gráfico-global-de-la-velocidad"><span class="header-section-number">2.2.2</span> <strong>Análisis Gráfico Global de la Velocidad</strong></h3>
+<p>Primero, se utilizará la base de datos completa de HURDAT, que abarca todos los huracanes en todo el mundo durante los años de 1851 a 2021. Esto permitirá observar y analizar la variabilidad de las velocidades a lo largo de los años y comprender los diversos comportamientos de estos fenómenos. Posteriormente, se llevará a cabo un análisis similar, pero enfocado exclusivamente en los huracanes que se acercaron a las costas de Costa Rica y Nicaragua.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Reporte_CHF_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como se presencia en el “Gráfico 1: Frecuencias de Velocidades de los Huracanes”, se observa una relativa estabilidad en la velocidad de los huracanes a lo largo de los años, con la excepción del período entre 1851 y 1885 a través de todo del mundo. Este cambio puede atribuirse posiblemente a limitaciones en los instrumentos de medición de la época, ya que se identifica un pico en el subgráfico que sugiere la existencia de una tendencia hacia ese valor en los datos recopilados durante ese intervalo de tiempo. Posteriormente, a partir de 1885, las velocidades de los huracanes tienen una distribución similar, con características que se asemejan a una distribución gamma, marcada por su asimetría. Además como se puede observar, los promedios son muy similares alrededor de 75, por lo cual que utilizar el promedio para el futuro cálculo del CHF no es tan malo, esto se mencionará a más detalle posteriormente. Sin embargo cabe mencionar que se está tratando con distribuciones asimétricas por lo cual sería mas pertinente trabajar con las medianas.</p>
+<p>Luego, se procede a la representación gráfica de las frecuencias de velocidad desde 1851 hasta 2023 en la región cercana a Costa Rica y Nicaragua. Este gráfico tiene como finalidad brindar una comprensión más precisa sobre cómo se distribuyen las velocidades en las inmediaciones de estos países. El objetivo subyacente es determinar si esta distribución sigue una pauta similar a la que se observa en la distribución de velocidades de huracanes a nivel global, tal como se presenta en el “Gráfico 1: Frecuencias de Velocidades de los Huracanes”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hurdat_grafico_cr_nic <span class="op">=</span> hurdat_cr_nic.copy()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>hurdat_grafico_cr_nic <span class="op">=</span> hurdat_cr_nic.drop(<span class="st">'geometry'</span>,axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Reporte_CHF_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La distribución de velocidades de los huracanes que han afectado las proximidades de Costa Rica y Nicaragua muestra una notable similitud con las velocidades observadas en el “Gráfico 1: Frecuencias de Velocidades de los Huracanes”. Esto indica que las velocidades de los huracanes no exhiben un comportamiento irregular cuando atraviesan estas regiones mencionadas. Es importante destacar que la cantidad total de huracanes que afectan estas zonas es bastante reducida, como se puede apreciar en los datos. Además, el promedio es un poco mayor que el del gráfico anterior.</p>
+</section>
+</section>
+<section id="análisis-del-indicador-chf" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="análisis-del-indicador-chf"><span class="header-section-number">2.3</span> <strong>Análisis del Indicador CHF</strong></h2>
+<p>En esta subsección se realizaran los siguientes puntos:</p>
+<ol type="1">
+<li>Creación del indicador CHF</li>
+<li>Graficación del indicador CHF</li>
+</ol>
+<section id="creación-del-indicador-chf" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="creación-del-indicador-chf"><span class="header-section-number">2.3.1</span> <strong>Creación del Indicador CHF</strong></h3>
+<p>Para la creación del indicador CHF, el cual aparece en el artículo científico <em>Increased U.S. coastal hurricane risk under climate change</em> de Karthik Balaguru se debe tomar en cuenta varios aspectos. La formula mencionada en la introducción la cual es la siguiente:</p>
+<p><span class="math display">\[
+CHF = n\frac{l}{TimeStep*v}
+\]</span></p>
+<p>En donde, <span class="math display">\[
+n: \textrm{es el número de trayectorias de huracanes que pasan a través de un grado cuadrado}
+\]</span> <span class="math display">\[
+l: \textrm{la longitud de la cuadrícula}
+\]</span></p>
+<p><span class="math display">\[
+v: \textrm{la velocidad de traslación}
+\]</span></p>
+<p><span class="math display">\[
+TimeStep: \textrm{es el paso de tiempo}
+\]</span></p>
+<p>Debido a que se está utilizando la base de datos del HURDAT hay una limitación en la implementación de este estimador, de la manera que lo propone Balaguru, puesto que dicha base no tiene las mismas condiciones propuestas en la formula. Seguidamente se brindaran las observaciones que habran en este cálculo del CHF.</p>
+<ul>
+<li><p>La base del HURDAT tiene un <strong>TimeStep</strong> de 24 horas y no de 6 como sugiere Balaguru</p></li>
+<li><p>En el artículo de Balaguru no se especifica como se utiliza el tiempo de traslación, es decir <strong>v</strong>, por lo cual para la implementación de este indice se decidió tomar el promedio de la máxima velocidad (MaxW) por grado cuadrado.</p></li>
+<li><p>Por ultimo, cabe mencionar que el radio (Rad) no se utiliza en el estimador CHF pero es una variable que se podría contemplar incluirla de cierta manera en el cálculo.</p></li>
+</ul>
+<section id="creación-de-cuadrículas" class="level4" data-number="2.3.1.1">
+<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="creación-de-cuadrículas"><span class="header-section-number">2.3.1.1</span> <strong>Creación de cuadrículas</strong></h4>
+<p>\ Se prosigue a crear las cuadrículas que se van a utilizar para el índice del CHF, cabe resaltar que se menciona en el libro de Balaguru que las cuadrículas son grado cuadrado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grado_cuad <span class="op">=</span> <span class="dv">1</span> <span class="co">#Grado cuadrado = metro cuadrado</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>x_coords <span class="op">=</span> np.arange(minx, maxx, grado_cuad)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>y_coords <span class="op">=</span> np.arange(miny, maxy, grado_cuad)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>celdas <span class="op">=</span> [] <span class="co">#Lista donde guardaremos las coordenadas de las celdas</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> x_coords:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> y <span class="kw">in</span> y_coords:</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        poligono <span class="op">=</span> Polygon([(x, y), </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        (x <span class="op">+</span> grado_cuad, y), </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        (x <span class="op">+</span> grado_cuad, y <span class="op">+</span> grado_cuad), </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        (x, y <span class="op">+</span> grado_cuad)])</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        celdas.append(poligono)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>celdas[:<span class="dv">5</span>] <span class="co">#Mostramos solo los primeros 5 resultados</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[&lt;POLYGON ((-87.7 5.5, -86.7 5.5, -86.7 6.5, -87.7 6.5, -87.7 5.5))&gt;, &lt;POLYGON ((-87.7 6.5, -86.7 6.5, -86.7 7.5, -87.7 7.5, -87.7 6.5))&gt;, &lt;POLYGON ((-87.7 7.5, -86.7 7.5, -86.7 8.5, -87.7 8.5, -87.7 7.5))&gt;, &lt;POLYGON ((-87.7 8.5, -86.7 8.5, -86.7 9.5, -87.7 9.5, -87.7 8.5))&gt;, &lt;POLYGON ((-87.7 9.5, -86.7 9.5, -86.7 10.5, -87.7 10.5, -87.7 9.5))&gt;]</code></pre>
+</div>
+</div>
+</section>
+<section id="creación-del-indice-chf" class="level4" data-number="2.3.1.2">
+<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="creación-del-indice-chf"><span class="header-section-number">2.3.1.2</span> <strong>Creación del Indice CHF</strong></h4>
+<p>Ya teniendo las cuadrículas definidas, se prosigue a crear el indice CHF. La formula empleada para el cálculo del CHF quedo de la siguiente manera: <span class="math display">\[
+CHF = \frac{n_i}{6\overline{v}_{i}}
+\]</span> En donde, <span class="math display">\[
+n_i: \textrm{es el número de huracanes que pasaron a través de la cuadricula i}
+\]</span> <span class="math display">\[
+v_i: \textrm{velocidad máxima de traslación promedio de la cuadrícula i}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>grid_gdf <span class="op">=</span> gpd.GeoDataFrame({<span class="st">'geometry'</span>: celdas}, crs<span class="op">=</span>cr_nic.crs)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la frecuencia de huracanes en cada cuadrícula</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>grid_gdf[<span class="st">'frecuencia_h'</span>] <span class="op">=</span> grid_gdf[<span class="st">'geometry'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> geom: <span class="bu">len</span>(hurdat_cr_nic[hurdat_cr_nic.within(geom)]))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el promedio de velocidad de huracanes en cada cuadrícula</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>grid_gdf[<span class="st">'velocidad_promedio'</span>] <span class="op">=</span> grid_gdf[<span class="st">'geometry'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> geom: hurdat_cr_nic[hurdat_cr_nic.within(geom)][<span class="st">'MaxW'</span>].mean())</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sumar el promedio de velocidad a la frecuencia en un nuevo campo</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>grid_gdf[<span class="st">'Indicador_CHF'</span>] <span class="op">=</span> grid_gdf[<span class="st">'frecuencia_h'</span>]<span class="op">/</span>(grid_gdf[<span class="st">'velocidad_promedio'</span>]<span class="op">+</span><span class="dv">24</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>grid_gdf[grid_gdf[<span class="st">"frecuencia_h"</span>]<span class="op">&gt;</span><span class="dv">0</span>].head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                             geometry  ...  Indicador_CHF
+5   POLYGON ((-87.69097 10.49903, -86.69097 10.499...  ...       0.013072
+17  POLYGON ((-86.69097 12.49903, -85.69097 12.499...  ...       0.013158
+27  POLYGON ((-85.69097 12.49903, -84.69097 12.499...  ...       0.022949
+28  POLYGON ((-85.69097 13.49903, -84.69097 13.499...  ...       0.010638
+29  POLYGON ((-85.69097 14.49903, -84.69097 14.499...  ...       0.010101
+
+[5 rows x 4 columns]</code></pre>
+</div>
+</div>
+<p>Ya teniendo creado el indice CHF exportamos los datos a un documento GeoJson para poder manipular la base y poder graficar con la librería <code>sf</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>documento <span class="op">=</span> <span class="st">'Indice_CHF.geojson'</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(documento , <span class="st">'w'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(grid_gdf.to_json())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>23013</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>documento <span class="op">=</span> <span class="st">'CR_NIC.geojson'</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(documento , <span class="st">'w'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(cr_nic.to_json())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4757507</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>indice <span class="ot">=</span> <span class="fu">geojson_sf</span>(<span class="st">"Indice_CHF.geojson"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cr_nic <span class="ot">=</span> <span class="fu">geojson_sf</span>(<span class="st">"CR_NIC.geojson"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Reporte_CHF_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
