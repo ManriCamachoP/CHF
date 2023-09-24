@@ -233,9 +233,49 @@ fenómenos. Posteriormente, se llevará a cabo un análisis similar, pero
 enfocado exclusivamente en los huracanes que se acercaron a las costas
 de Costa Rica y Nicaragua.
 
+``` r
+df2 = py$hurdat  %>% 
+  mutate(anio_agrupados = case_when(
+    anio<=1885 ~ '1851-1885',
+    (anio>1885)&(anio<=1919) ~'1886-1919',
+    (anio>1919)&(anio<=1954) ~ '1920-1954',
+    (anio>1954)&(anio<=1988) ~ '1955-1988',
+    (anio>1989) ~ '1989-2023',
+  )) %>% 
+  drop_na() %>% 
+  group_by(anio_agrupados) %>% 
+  summarise(prom.anio = mean(MaxW))
+  
+py$hurdat %>% 
+  mutate(anio_agrupados = case_when(
+    anio<=1885 ~ '1851-1885',
+    (anio>1885)&(anio<=1919) ~'1886-1919',
+    (anio>1919)&(anio<=1954) ~ '1920-1954',
+    (anio>1954)&(anio<=1988) ~ '1955-1988',
+    (anio>1989) ~ '1989-2023',
+  )) %>% 
+  drop_na() %>% 
+  ggplot(aes(x = MaxW, fill = anio_agrupados))+
+    geom_histogram()+
+    geom_vline(data = df2, aes(xintercept = prom.anio),
+             linetype = "dashed",
+             color= "black")+
+    geom_label(data = df2,
+              mapping = aes(x = prom.anio+19, y = 200, label = paste("Promedio",round(prom.anio))),
+              label.padding = unit(0.15, "lines"),
+              fill = 'white')+
+    facet_grid(~anio_agrupados,scales ="free_x")+
+  scale_fill_tableau()+
+    labs(title = "Frecuencia de Velocidad de Huracanes", y = "Frecuencia", x = "Velocidad",subtitle = "Filtrado por años desde 1851 a 2023",caption = "Elaboracion propia: Manrique Camacho P.")+
+  scale_x_continuous(breaks = c(20,40,60,80,100,120))+
+  guides(fill='none')+
+  theme_fivethirtyeight()+
+  theme(strip.text = element_text(face = "bold"))
+```
+
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-<img src="Reporte_CHF_files/figure-gfm/unnamed-chunk-9-1.png" width="90%" style="display: block; margin: auto;" />
+![](Reporte_CHF_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 Como se presencia en el “Gráfico 1: Frecuencias de Velocidades de los
 Huracanes”, se observa una relativa estabilidad en la velocidad de los
@@ -267,7 +307,24 @@ hurdat_grafico_cr_nic = hurdat_cr_nic.copy()
 hurdat_grafico_cr_nic = hurdat_cr_nic.drop('geometry',axis=1)
 ```
 
-<img src="Reporte_CHF_files/figure-gfm/unnamed-chunk-11-1.png" width="90%" style="display: block; margin: auto;" />
+``` r
+py$hurdat_grafico_cr_nic %>% 
+  ggplot(aes(x = MaxW))+
+  geom_histogram(fill = "#cf3e53", alpha = 0.8, color = "black",binwidth = 10)+
+    geom_vline(aes(xintercept = mean(MaxW)),
+             linetype = "dashed",
+             color= "black")+
+    geom_label(mapping = aes(x = mean(MaxW)+5.5, y = 7, label = paste("Promedio",round(mean(MaxW)))),
+              label.padding = unit(0.15, "lines"))+
+    labs(title = "Frecuencia de Velocidad de Huracanes en Costa Rica y Nicaragua", y = "Frecuencia", x = "Velocidad",subtitle = "Desde 1851 hasta 2023",caption = "Elaboracion propia: Manrique Camacho P.")+
+  scale_x_continuous(breaks = c(20,40,60,80,100,120))+
+  scale_y_continuous(breaks = c(1,2,3,4,5,6,7,8,9))+
+  guides(fill='none')+
+  theme_fivethirtyeight()+
+  theme(strip.text = element_text(face = "bold"))
+```
+
+![](Reporte_CHF_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 La distribución de velocidades de los huracanes que han afectado las
 proximidades de Costa Rica y Nicaragua muestra una notable similitud con
@@ -417,4 +474,19 @@ indice = geojson_sf("Indice_CHF.geojson")
 cr_nic = geojson_sf("CR_NIC.geojson")
 ```
 
-![](Reporte_CHF_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+``` r
+indice = indice %>% 
+  mutate(Indicador_CHF = as.numeric(Indicador_CHF))
+ggplot(data = cr_nic)+
+  geom_sf(data = cr_nic, fill = "black",alpha=0.3)+
+  geom_sf(data = indice, aes(fill = Indicador_CHF),alpha = 0.6,color = "grey50")+
+  coord_sf(xlim = c(-87.47, -81.95), ylim = c(7.9, 15))+
+  scale_fill_gradient(low="burlywood", high="red3", na.value="white")+
+  labs(title = "Indicador Costal Hurricane Frequency",subtitle = "En los paises de Nicaragua y Costa Rica",caption = "Elaboración propia:Manrique Camacho P.",fill = "CHF")+
+  theme_light()+
+  theme(plot.title = element_text(face="bold",size = 10),
+        plot.subtitle = element_text(size=8),
+        plot.caption = element_text(size = 8))
+```
+
+![](Reporte_CHF_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
