@@ -193,6 +193,7 @@ py$hurdat %>%
   theme_fivethirtyeight()+
   theme(strip.text = element_text(face = "bold"))
 ```
+
 ![](Figs/Frec_Vel.png)<!-- -->
 
 Como se presencia en el "Gráfico 1: Frecuencias de Velocidades de los Huracanes", se observa una relativa estabilidad en la velocidad de los huracanes a lo largo de los años, con la excepción del período entre 1851 y 1885 a través de todo del mundo. Este cambio puede atribuirse posiblemente a limitaciones en los instrumentos de medición de la época, ya que se identifica un pico en el subgráfico que sugiere la existencia de una tendencia hacia ese valor en los datos recopilados durante ese intervalo de tiempo. Posteriormente, a partir de 1885, las velocidades de los huracanes tienen una distribución similar, con características que se asemejan a una distribución gamma, marcada por su asimetría. Además como se puede observar, los promedios son muy similares alrededor de 75, por lo cual que utilizar el promedio para el futuro cálculo del CHF no es tan malo, esto se mencionará a más detalle posteriormente. Sin embargo cabe mencionar que se está tratando con distribuciones asimétricas por lo cual sería mas pertinente trabajar con las medianas.
@@ -220,19 +221,29 @@ py$hurdat_grafico_cr_nic %>%
   theme_fivethirtyeight()+
   theme(strip.text = element_text(face = "bold"))
 ```
-![](Figs/CR_NIC_frec.png)<!-- -->
 
+![](Figs/CR_NIC_frec.png)<!-- -->
 
 La distribución de velocidades de los huracanes que han afectado las proximidades de Costa Rica y Nicaragua muestra una notable similitud con las velocidades observadas en el "Gráfico 1: Frecuencias de Velocidades de los Huracanes". Esto indica que las velocidades de los huracanes no exhiben un comportamiento irregular cuando atraviesan estas regiones mencionadas. Es importante destacar que la cantidad total de huracanes que afectan estas zonas es bastante reducida, como se puede apreciar en los datos. Además, el promedio es un poco mayor que el del gráfico anterior.
 
 ## **Análisis del Indicador CHF**
 
+Debido a la disponibilidad de dos bases de datos del HURDAT, una con registros cada 6 horas y otra con registros cada 24 horas, hemos ampliado nuestra capacidad de análisis de este estimador. Esta diversificación nos permite una exploración más detallada del indicador, ya que la base del HURDAT de 6 horas se alinea más con la teoría propuesta por Balagurú, quien utiliza un intervalo de 6 horas para evaluar el CHF.
+
+La inclusión de esta base de datos de 6 horas es especialmente relevante, ya que nos brinda información más precisa y detallada sobre el comportamiento de los huracanes. En contraste, cuando utilizamos la base de 24 horas, debido a la escasez de datos, perdemos cierta información importante en la dinámica de estos fenómenos meteorológicos. Esto resalta la importancia de disponer de datos con una mayor frecuencia temporal para una mejor comprensión del comportamiento de los huracanes.
+
 En esta subsección se realizaran los siguientes puntos:
 
 1.  Creación del indicador CHF
+    1.  Base de 24 horas traslación
+    2.  Base de 6 horas de traslación
 2.  Graficación del indicador CHF
+    1.  Base de 24 horas de traslación
+    2.  Base de 6 horas de traslación
 
 ### **Creación del Indicador CHF**
+
+#### Base de 24 horas HURDAT
 
 Para la creación del indicador CHF, el cual aparece en el artículo científico *Increased U.S. coastal hurricane risk under climate change* de Karthik Balaguru se debe tomar en cuenta varios aspectos. La formula mencionada en la introducción la cual es la siguiente:
 
@@ -256,7 +267,7 @@ $$
 
 Debido a que se está utilizando la base de datos del HURDAT hay una limitación en la implementación de este estimador, de la manera que lo propone Balaguru, puesto que dicha base no tiene las mismas condiciones propuestas en la formula. Seguidamente se brindaran las observaciones que habran en este cálculo del CHF.
 
--   La base del HURDAT tiene un **TimeStep** de 24 horas y no de 6 como sugiere Balaguru
+-   La base del HURDAT tiene un **TimeStep** de 24 horas
 
 -   En el artículo de Balaguru no se especifica como se utiliza el tiempo de traslación, es decir **v**, por lo cual para la implementación de este indice se decidió tomar el promedio de la máxima velocidad (MaxW) por grado cuadrado.
 
@@ -343,4 +354,5 @@ ggplot(data = cr_nic)+
         plot.subtitle = element_text(size=8),
         plot.caption = element_text(size = 8))
 ```
+
 ![](Figs/000046.png)<!-- -->
