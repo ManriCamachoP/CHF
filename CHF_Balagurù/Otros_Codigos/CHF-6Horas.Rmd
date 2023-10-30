@@ -232,18 +232,14 @@ Debido a la disponibilidad de dos bases de datos del HURDAT, una con registros c
 
 La inclusión de esta base de datos de 6 horas es especialmente relevante, ya que nos brinda información más precisa y detallada sobre el comportamiento de los huracanes. En contraste, cuando utilizamos la base de 24 horas, debido a la escasez de datos, perdemos cierta información importante en la dinámica de estos fenómenos meteorológicos. Esto resalta la importancia de disponer de datos con una mayor frecuencia temporal para una mejor comprensión del comportamiento de los huracanes.
 
+El análisis con la base de datos del HURDAT con un time step de 6 horas se abordara en otro rmd, llamado CHF-6Horas
+
 En esta subsección se realizaran los siguientes puntos:
 
 1.  Creación del indicador CHF
-    1.  Base de 24 horas traslación
-    2.  Base de 6 horas de traslación
 2.  Graficación del indicador CHF
-    1.  Base de 24 horas de traslación
-    2.  Base de 6 horas de traslación
 
 ### **Creación del Indicador CHF**
-
-#### Base de 24 horas HURDAT
 
 Para la creación del indicador CHF, el cual aparece en el artículo científico *Increased U.S. coastal hurricane risk under climate change* de Karthik Balaguru se debe tomar en cuenta varios aspectos. La formula mencionada en la introducción la cual es la siguiente:
 
